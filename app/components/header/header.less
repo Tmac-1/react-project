@@ -1,0 +1,25 @@
+@import (less,reference) "../../style/mixin.less";
+@import '../../assets/iconfonts/iconfont.css';
+
+
+.header-container{
+    background-color:@base-color;
+    .flex();
+    position: fixed;
+    top:0;
+    left:0;
+    z-index:10;
+    .wh(100%,88px);
+    .header-slide-icon{
+        .font(36px,#fff);
+        .positionLeft();
+    }
+    .header-title{
+        .font(40px,#fff);
+    }
+    .header-link{
+        .font(40px,#fff);
+        .positionRight;
+    }
+}
+
