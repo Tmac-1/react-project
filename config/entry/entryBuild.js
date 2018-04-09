@@ -15,6 +15,7 @@ const entryContent = (data) => {
         import ReactDOM from 'react-dom';
         import Index from '../app/pages/${data.path}';
         import '../app/utils/setRem';
+        import '../app/style/base.css';
         ReactDOM.render([<Index key="Index"/>],document.getElementById('app'));`
     )
 };

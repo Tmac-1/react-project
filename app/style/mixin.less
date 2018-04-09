@@ -22,6 +22,16 @@
   transform:translate3d(0,-50%,0);
 } 
 
+.coverScreen(@position:absolute,@backColor:#fff) when (iskeyword(@position)),(iscolor(@backColor))  {
+  position: @position;
+  top:0;
+  left:0;
+  right:0;
+  bottom:0;
+  width:100%;
+  height: 100%;
+  background:@backColor;
+}
 
 .font( @font-size,@color:#333,@text-align:left) when (ispixel(@font-size)),(iscolor(@color)),(iskeyword(@text-align)){
   font-size:@font-size;
