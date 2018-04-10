@@ -2,7 +2,11 @@
  * @Author: Tmac-1 
  * @Date: 2018-04-05 12:11:47 
  * @Last Modified by: Tmac-1
+<<<<<<< HEAD
  * @Last Modified time: 2018-04-09 22:02:51
+=======
+ * @Last Modified time: 2018-04-10 18:33:31
+>>>>>>> a72fad3c04e82da4023c39c3db0dd0090821488a
  */
 
  import React from 'react';
@@ -15,8 +19,12 @@
         return(
 
             <main className='home-container'>
+<<<<<<< HEAD
                   <PubicHeader />
                   <Test/>
+=======
+                  <PubicHeader title='首页'/>
+>>>>>>> a72fad3c04e82da4023c39c3db0dd0090821488a
                   <p className='common-title'>请录入您的信息</p>
                   <form className='home-form'>
                        <div className='home-form-item'>
