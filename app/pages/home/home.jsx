@@ -2,7 +2,7 @@
  * @Author: Tmac-1 
  * @Date: 2018-04-05 12:11:47 
  * @Last Modified by: Tmac-1
- * @Last Modified time: 2018-04-09 14:03:23
+ * @Last Modified time: 2018-04-10 18:33:31
  */
 
  import React from 'react';
@@ -13,7 +13,7 @@
     render(){
         return(
             <main className='home-container'>
-                  <PubicHeader />
+                  <PubicHeader title='首页'/>
                   <p className='common-title'>请录入您的信息</p>
                   <form className='home-form'>
                        <div className='home-form-item'>
