@@ -2,18 +2,21 @@
  * @Author: Tmac-1 
  * @Date: 2018-04-05 12:11:47 
  * @Last Modified by: Tmac-1
- * @Last Modified time: 2018-04-09 14:03:23
+ * @Last Modified time: 2018-04-09 22:02:51
  */
 
  import React from 'react';
  import PubicHeader from '../../components/header/header';
+ import Test from '../../components/test';
  import './home.less';
 
  class Index extends React.Component{
     render(){
         return(
+
             <main className='home-container'>
                   <PubicHeader />
+                  <Test/>
                   <p className='common-title'>请录入您的信息</p>
                   <form className='home-form'>
                        <div className='home-form-item'>
