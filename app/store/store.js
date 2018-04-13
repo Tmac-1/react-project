@@ -1,17 +1,16 @@
 /*
  * @Author: Tmac-1 
- * @Date: 2018-04-12 22:08:19 
+ * @Date: 2018-04-12 17:04:07 
  * @Last Modified by: Tmac-1
- * @Last Modified time: 2018-04-12 23:26:01
+ * @Last Modified time: 2018-04-13 14:59:05
  */
-
+ 
  import { createStore , combineReducers } from 'redux';
- import * as home from './home/reducer';
-//  import * as production from './production/reducer'
+ import * as home from  './home/reducer';
 
- let store = createStore(
-    //  home
-    combineReducers({ ...home }),
+ 
+ let store  =  createStore(
+     combineReducers( {...home} )
  )
 
  export default store;

@@ -6,4 +6,5 @@
     <li>3.使用less语法</li>
     <li>4.react中使用动画（react-addons-css-transition-group）</li>
     <li>5.路由的使用 react-router(v.4.2)</li>
+    <li>6.数据配置redux，保存状态</li>
 </ul>
