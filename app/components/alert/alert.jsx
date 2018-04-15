@@ -2,13 +2,14 @@
  * @Author: Tmac-1 
  * @Date: 2018-04-13 18:27:16 
  * @Last Modified by: Tmac-1
- * @Last Modified time: 2018-04-13 19:00:08
+ * @Last Modified time: 2018-04-14 17:48:45
  */
 
  import React from 'react';
  import TouchableOpacity from '../TouchableOpacity/TouchableOpacity';
  import PropTypes from 'prop-types';
- import ReactTransitionGroup from 'react-addons-css-transition-group';
+ import ReactCSSTransitionGroup from 'react-addons-css-transition-group';
+ import './alert.less';
 
  class Alert extends React.Component{
 
@@ -19,7 +20,7 @@
    }
 
     //css动画组件设置目标组件
-    FristChild = props =>{
+    FirstChild = props =>{
         const childrenArray = React.Children.toArray(props.children)
         return childrenArray[0] || null;
     }
@@ -31,8 +32,8 @@
 
     render(){
         return(
-            <ReactTransitionGroup
-               component={this.FristChild}
+            <ReactCSSTransitionGroup
+               component={this.FirstChild}
                transitionName='alert'
                transitionEnterTimeout={300}
                transitionLeaveTimeout={300}
@@ -47,7 +48,7 @@
                    </div>
 
                }        
-            </ReactTransitionGroup>
+            </ReactCSSTransitionGroup>
         )
     }
 

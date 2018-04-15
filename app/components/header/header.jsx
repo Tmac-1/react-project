@@ -2,7 +2,7 @@
  * @Author: Tmac-1 
  * @Date: 2018-04-05 12:05:06 
  * @Last Modified by: Tmac-1
- * @Last Modified time: 2018-04-10 18:33:33
+ * @Last Modified time: 2018-04-14 17:16:19
  */
 
  import React from 'react';
@@ -33,7 +33,8 @@
             <header className='header-container'>
                 <span className='header-slide-icon iconfont icon-caidan' onClick={this.toggleNav}></span>
                 <span className='header-title'>{this.props.title}</span>
-                <span className='header-link iconfont icon-5'></span>   
+                <NavLink to='/record' exact className='header-link iconfont icon-5' />
+                {/* <span className='header-link iconfont icon-5'></span>    */}
                 
               <ReactCSSTransitionGroup
                 component={this.FirstChild}

@@ -2,7 +2,7 @@
  * @Author: Tmac-1 
  * @Date: 2018-04-12 17:10:31 
  * @Last Modified by: Tmac-1
- * @Last Modified time: 2018-04-13 16:56:27
+ * @Last Modified time: 2018-04-14 19:52:13
  */
 
  import * as home from './action-type';
@@ -20,6 +20,8 @@
       switch(action.type){
          case home.SAVEFORMDATA:
          return { ...state,...{[action.datatype]:action.value}};
+         case home.CLEARDATA:
+         return { ...state,...defaultState}
          default:
          return state;
      }

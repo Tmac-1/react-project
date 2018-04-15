@@ -2,16 +2,17 @@
  * @Author: Tmac-1 
  * @Date: 2018-04-05 12:11:47 
  * @Last Modified by: Tmac-1
- * @Last Modified time: 2018-04-13 18:59:48
+ * @Last Modified time: 2018-04-14 20:06:24
  */
 
  import React from 'react';
  import PubicHeader from '../../components/header/header';
+ import {NavLink} from 'react-router-dom';
  import { connect } from 'react-redux';
  import { saveFormData , saveImg , clearData } from '../../store/home/action';
  import PropTypes from 'prop-types';
  import TouchableOpacity from '../../components/TouchableOpacity/TouchableOpacity';
-
+ import PublicAlert from '../../components/alert/alert';
  import './home.less';
 
 
@@ -19,7 +20,8 @@
    
     static propTypes = {
         formData:PropTypes.object.isRequired,
-        saveFormData:PropTypes.func.isRequired
+        saveFormData:PropTypes.func.isRequired,
+        clearData:PropTypes.func.isRequired,
    };
 
    state = {
@@ -59,13 +61,22 @@
             alertTip = '请填写正确的手机号'
         }else{
             alertTip = '添加数据成功'
+            this.props.clearData();
         }
         
         this.setState({
             alertStatus:true,
             alertTip:alertTip
-        })
+        })  
         
+    }
+
+    // 关闭弹窗
+    closeAlert = () =>{
+        this.setState({
+            alertStatus:false,
+            alertTip:''
+        })
     }
 
     render(){
@@ -90,9 +101,10 @@
 
                   <div>
                       <p className='common-title'>请选择销售的产品</p> 
-                      <div className='common-select-btn'>
-                          选择产品
-                      </div>
+                      <NavLink to='/production' className='common-select-btn'>
+                           选择产品
+                      </NavLink>
+                        
                   </div>
 
                   <div className='upload-img-con'>
@@ -103,7 +115,7 @@
                   </div>
 
                   <TouchableOpacity className='submit-btn' clickCallBack={this.submitForm} text='提交'/>
-                
+                  <PublicAlert closeAlert={this.closeAlert} alertTip={this.state.alertTip} alertStatus={this.state.alertStatus}/>
 
             </main>
         )

@@ -7,4 +7,5 @@
     <li>4.react中使用动画（react-addons-css-transition-group）</li>
     <li>5.路由的使用 react-router(v.4.2)</li>
     <li>6.数据配置redux，保存状态</li>
+    <li>7.使用immutable进行数据类型转换</li>
 </ul>
