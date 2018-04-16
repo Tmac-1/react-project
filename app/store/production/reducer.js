@@ -2,7 +2,7 @@
  * @Author: Tmac-1 
  * @Date: 2018-04-14 23:41:49 
  * @Last Modified by: Tmac-1
- * @Last Modified time: 2018-04-15 23:45:14
+ * @Last Modified time: 2018-04-16 10:13:49
  */
 import * as pro from './action-type';
 import Immutable from 'immutable';
@@ -40,6 +40,13 @@ import Immutable from 'immutable';
     let imuItem;
 
     switch(action.type){
+       case pro.TOGGLESELECT:
+       //避免引用类型数据，使用immutable进行数据转换 
+       imuDataList = Immutable.List(state.dataList);
+       imuItem = Immutable.Map(state.dataList[action.index]);
+       imuItem = imuItem.set('selectStatus',!imuItem.get('selectStatus'));
+       imuDataList = imuDataList.set(action.index,imuItem);
+       return{...state ,...{dataList:imuDataList.toJS()}}
        case pro.EDITPRODUCTION:
        //避免引用类型数据，使用immutable进行数据转换 
        imuDataList = Immutable.List(state.dataList);  // 类似于数组

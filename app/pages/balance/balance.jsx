@@ -5,7 +5,7 @@ class Balance extends React.Component{
     render(){
         return(
             <main>
-                <PublicHeader title='提现'/>
+                <PublicHeader title='提现' record/>
                 <div>这是提现中心</div>
             </main>
             

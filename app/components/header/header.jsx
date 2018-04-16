@@ -2,12 +2,13 @@
  * @Author: Tmac-1 
  * @Date: 2018-04-05 12:05:06 
  * @Last Modified by: Tmac-1
- * @Last Modified time: 2018-04-14 17:16:19
+ * @Last Modified time: 2018-04-16 10:58:16
  */
 
  import React from 'react';
  import {NavLink} from 'react-router-dom';
  import ReactCSSTransitionGroup from 'react-addons-css-transition-group';
+ import PropTypes  from 'prop-types';
  import './header.less';
 
  class PublicHeader extends React.Component{
@@ -19,6 +20,12 @@
        this.toggleNav = this.toggleNav.bind(this)
    }
    
+   static propTypes ={
+       record:PropTypes.any,
+       confirm:PropTypes.any,
+       title:PropTypes.string.isRequired
+   }
+
    //切换左侧导航栏状态
    toggleNav(){
        this.setState({ navState:!this.state.navState })
@@ -33,8 +40,13 @@
             <header className='header-container'>
                 <span className='header-slide-icon iconfont icon-caidan' onClick={this.toggleNav}></span>
                 <span className='header-title'>{this.props.title}</span>
-                <NavLink to='/record' exact className='header-link iconfont icon-5' />
-                {/* <span className='header-link iconfont icon-5'></span>    */}
+                {
+                    this.props.record&& <NavLink to='/record' exact className='header-link iconfont icon-5' />
+                }
+                {
+                    this.props.confirm && <NavLink to='/' exact className='header-link header-link-confirm'>确定</NavLink>
+                }
+    
                 
               <ReactCSSTransitionGroup
                 component={this.FirstChild}

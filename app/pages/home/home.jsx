@@ -2,7 +2,7 @@
  * @Author: Tmac-1 
  * @Date: 2018-04-05 12:11:47 
  * @Last Modified by: Tmac-1
- * @Last Modified time: 2018-04-14 20:06:24
+ * @Last Modified time: 2018-04-16 14:09:12
  */
 
  import React from 'react';
@@ -79,10 +79,26 @@
         })
     }
 
+    // 初始化数据，获取已选择的商品
+    initData = props =>{
+        this.selectedProList = [];
+        props.proData.dataList.forEach( item =>{
+            if(item.selectStatus && item.selectNum){
+                this.selectedProList.push(item)
+            }
+        })
+
+    }
+
+    componentWillMount(){
+        this.initData(this.props)
+    }
+
+
     render(){
         return(
             <main className='home-container'>
-                  <PubicHeader title='首页'/>
+                  <PubicHeader title='首页' record/>
                   <p className='common-title'>请录入您的信息</p>
                   <form className='home-form'>
                        <div className='home-form-item'>
@@ -102,7 +118,17 @@
                   <div>
                       <p className='common-title'>请选择销售的产品</p> 
                       <NavLink to='/production' className='common-select-btn'>
-                           选择产品
+                      {
+                          this.selectedProList.length ? 
+                          <ul className='selected-pro-list'>
+                              {
+                                  this.selectedProList.map((item,index) =>{
+                                      return <li key={index} className='selected-pro-item ellipsis'>{item.product_name}X{item.selectNum}</li>
+                                  })
+                              }
+                          </ul> : "选择产品"
+                      }
+                           
                       </NavLink>
                         
                   </div>

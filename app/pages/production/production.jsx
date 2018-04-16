@@ -2,11 +2,11 @@
  * @Author: Tmac-1 
  * @Date: 2018-04-14 23:37:14 
  * @Last Modified by: Tmac-1
- * @Last Modified time: 2018-04-15 23:49:46
+ * @Last Modified time: 2018-04-16 10:58:36
  */
 import React from 'react';
 import PublicHeader from '../../components/header/header';
-import { editPro } from '../../store/production/action';
+import { editPro ,togSelectPro } from '../../store/production/action';
 import { connect } from 'react-redux';
 import PropTypes from 'prop-types';
 import './production.less';
@@ -34,17 +34,22 @@ class Production extends React.Component{
         this.props.editPro(index,currentNum)
     }
 
+    // 选择商品，交由redux进行数据处理，作为全局变量
+    togSelect = index =>{
+        this.props.togSelectPro(index)
+    }
+
     render(){
        return (
            <main className='common-con-top'>   
-               <PublicHeader title='首页'/>
+               <PublicHeader title='首页' confirm/>
                <section className='pro-list-con'>
                    <ul className='pro-list-ul'>
                    {
-                        this.props.proData.dataList.map( (item,index)=>{
+                        this.props.proData.dataList.map( (item,index) =>{
                             return  <li className='pro-item' key={index}>
-                                <div className='pro-item-select'>
-                                        <span className='icon-dui pro-select-status'></span>
+                                <div className='pro-item-select' onClick={this.togSelect.bind(this,index)}>
+                                        <span className={`icon-dui pro-select-status ${item.selectStatus ? 'pro-selected' :''}` }></span>
                                         <span className='pro-name'>{item.product_name}</span>
                                 </div>
                                 <div className='pro-item-edit'>
@@ -68,6 +73,7 @@ export default connect(
     state =>({
        proData:state.proData,
     }),{
-        editPro
+        editPro,
+        togSelectPro
     }
 )(Production);
