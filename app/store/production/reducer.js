@@ -2,7 +2,7 @@
  * @Author: Tmac-1 
  * @Date: 2018-04-14 23:41:49 
  * @Last Modified by: Tmac-1
- * @Last Modified time: 2018-04-16 10:13:49
+ * @Last Modified time: 2018-04-18 01:13:44
  */
 import * as pro from './action-type';
 import Immutable from 'immutable';
@@ -40,6 +40,8 @@ import Immutable from 'immutable';
     let imuItem;
 
     switch(action.type){
+       case pro.GETPRODUCTION:
+       return {...state,...action}
        case pro.TOGGLESELECT:
        //避免引用类型数据，使用immutable进行数据转换 
        imuDataList = Immutable.List(state.dataList);

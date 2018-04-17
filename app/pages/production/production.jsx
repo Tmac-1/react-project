@@ -2,11 +2,11 @@
  * @Author: Tmac-1 
  * @Date: 2018-04-14 23:37:14 
  * @Last Modified by: Tmac-1
- * @Last Modified time: 2018-04-16 10:58:36
+ * @Last Modified time: 2018-04-18 01:14:56
  */
 import React from 'react';
 import PublicHeader from '../../components/header/header';
-import { editPro ,togSelectPro } from '../../store/production/action';
+import { getProData, editPro ,togSelectPro } from '../../store/production/action';
 import { connect } from 'react-redux';
 import PropTypes from 'prop-types';
 import './production.less';
@@ -37,6 +37,10 @@ class Production extends React.Component{
     // 选择商品，交由redux进行数据处理，作为全局变量
     togSelect = index =>{
         this.props.togSelectPro(index)
+    }
+
+    componentDidMount(){
+        this.props.getProData()
     }
 
     render(){
@@ -74,6 +78,7 @@ export default connect(
        proData:state.proData,
     }),{
         editPro,
-        togSelectPro
+        togSelectPro,
+        getProData
     }
 )(Production);

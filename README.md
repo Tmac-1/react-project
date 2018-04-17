@@ -8,4 +8,6 @@
     <li>5.路由的使用 react-router(v.4.2)</li>
     <li>6.数据配置redux，保存状态</li>
     <li>7.使用immutable进行数据类型转换</li>
+    <li>8.使用axios调取后台数据</li>
+    <li>9.使用redux-thunk中间键处理异步API获取的数据</li>
 </ul>
