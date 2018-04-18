@@ -2,7 +2,7 @@
  * @Author: Tmac-1 
  * @Date: 2018-04-15 16:17:49 
  * @Last Modified by: Tmac-1
- * @Last Modified time: 2018-04-18 01:11:13
+ * @Last Modified time: 2018-04-18 11:29:03
  */
 
 import * as pro from './action-type';
@@ -11,7 +11,7 @@ import API from '../../api/api';
 
 // 初始化获取商品数据，保存至redux
 export const getProData = () =>{
-      // 返回函数，异步dispatch
+      // 返回函数，异步dispatch   使用了中间键
       return async dispatch =>{
           try{
               let result = await API.getProduction();
@@ -26,7 +26,7 @@ export const getProData = () =>{
                   dataList:result,
               })
           }catch(err){
-              console.error(err)
+              throw err;
           }
       }
 }

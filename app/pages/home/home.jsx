@@ -2,7 +2,7 @@
  * @Author: Tmac-1 
  * @Date: 2018-04-05 12:11:47 
  * @Last Modified by: Tmac-1
- * @Last Modified time: 2018-04-16 14:09:12
+ * @Last Modified time: 2018-04-18 14:46:45
  */
 
  import React from 'react';
@@ -10,6 +10,8 @@
  import {NavLink} from 'react-router-dom';
  import { connect } from 'react-redux';
  import { saveFormData , saveImg , clearData } from '../../store/home/action';
+ import envconfig from '../../envconfig/envconfig';
+ import API from '../../api/api';
  import PropTypes from 'prop-types';
  import TouchableOpacity from '../../components/TouchableOpacity/TouchableOpacity';
  import PublicAlert from '../../components/alert/alert';
@@ -21,6 +23,7 @@
     static propTypes = {
         formData:PropTypes.object.isRequired,
         saveFormData:PropTypes.func.isRequired,
+        saveImg:PropTypes.func.isRequired,
         clearData:PropTypes.func.isRequired,
    };
 
@@ -29,7 +32,7 @@
        alertTip:''  //弹窗提示文字
    }
 
-    /*
+    /** 
     * 将表单数据保存zhiredux，保存状态
     * @param { string } type 数据 orderSum || name || phoneNo
     * @param { object } event 事件对象
@@ -48,7 +51,25 @@
         }
         this.props.saveFormData(value,type)
     }
-    
+
+    /**
+     * 上传图片，并将图片地址存到redux，保留状态
+    */
+    uploadImg =  async event =>{
+          try{
+              let formdata = new FormData();
+              formdata.append('file',event.target.files[0]);
+              console.log(formdata)
+              console.log(event.target.files[0])
+              let result = await API.uploadImg({data:formdata});
+              this.props.saveImg(envconfig.imgUrl + result.image_path);
+              
+          }catch(err){
+              console.error(err)
+          }
+    }
+
+
     // 提交表单
     submitForm = ()=>{
         const { orderSum , name , phoneNo } = this.props.formData
@@ -126,23 +147,24 @@
                                       return <li key={index} className='selected-pro-item ellipsis'>{item.product_name}X{item.selectNum}</li>
                                   })
                               }
-                          </ul> : "选择产品"
+                          </ul> : "选择产品"    
                       }
-                           
+
                       </NavLink>
                         
                   </div>
 
                   <div className='upload-img-con'>
                       <p className='common-title'>请上传发票凭据</p>
-                      <div>
+                      <div className='file-lable'>
                           <span className='common-select-btn'>上传图片</span>
+                          <input type="file" onChange={this.uploadImg}/>
                       </div>
+                      <img src={this.props.formData.imgpath} className='select-img' alt=""/>
                   </div>
 
                   <TouchableOpacity className='submit-btn' clickCallBack={this.submitForm} text='提交'/>
                   <PublicAlert closeAlert={this.closeAlert} alertTip={this.state.alertTip} alertStatus={this.state.alertStatus}/>
-
             </main>
         )
     }

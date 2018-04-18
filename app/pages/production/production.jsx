@@ -2,7 +2,7 @@
  * @Author: Tmac-1 
  * @Date: 2018-04-14 23:37:14 
  * @Last Modified by: Tmac-1
- * @Last Modified time: 2018-04-18 01:14:56
+ * @Last Modified time: 2018-04-18 11:28:15
  */
 import React from 'react';
 import PublicHeader from '../../components/header/header';
@@ -17,6 +17,8 @@ class Production extends React.Component{
 
     static propTypes ={
         proData:PropTypes.object.isRequired,
+        getProData:PropTypes.func.isRequired,
+        togSelectPro:PropTypes.func.isRequired,
         editPro:PropTypes.func.isRequired,
     }
 
@@ -40,7 +42,10 @@ class Production extends React.Component{
     }
 
     componentDidMount(){
-        this.props.getProData()
+        // 初始的时候加载，有数据的时候不再加载，以保留操作数据的状态
+        if(!this.props.proData.dataList.length){
+            this.props.getProData()
+        }
     }
 
     render(){
@@ -52,15 +57,15 @@ class Production extends React.Component{
                    {
                         this.props.proData.dataList.map( (item,index) =>{
                             return  <li className='pro-item' key={index}>
-                                <div className='pro-item-select' onClick={this.togSelect.bind(this,index)}>
-                                        <span className={`icon-dui pro-select-status ${item.selectStatus ? 'pro-selected' :''}` }></span>
-                                        <span className='pro-name'>{item.product_name}</span>
-                                </div>
-                                <div className='pro-item-edit'>
-                                            <span className={`icon-jian ${item.selectNum > 0 ? 'edit-active' :''}`} onClick={this.handeleEdit.bind(this,index,-1)}></span>  
-                                            <span className='pro-num'>{item.selectNum}</span>  
-                                            <span className='icon-jia' onClick={this.handeleEdit.bind(this,index,1)}></span>  
-                                </div>
+                                        <div className='pro-item-select' onClick={this.togSelect.bind(this,index)}>
+                                                <span className={`icon-dui pro-select-status ${item.selectStatus ? 'pro-selected' :''}` }></span>
+                                                <span className='pro-name'>{item.product_name}</span>
+                                        </div>
+                                        <div className='pro-item-edit'>
+                                                    <span className={`icon-jian ${item.selectNum > 0 ? 'edit-active' :''}`} onClick={this.handeleEdit.bind(this,index,-1)}></span>  
+                                                    <span className='pro-num'>{item.selectNum}</span>  
+                                                    <span className='icon-jia' onClick={this.handeleEdit.bind(this,index,1)}></span>  
+                                        </div>
                                      </li>                
                         })
                    }

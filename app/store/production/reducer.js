@@ -2,7 +2,7 @@
  * @Author: Tmac-1 
  * @Date: 2018-04-14 23:41:49 
  * @Last Modified by: Tmac-1
- * @Last Modified time: 2018-04-18 01:13:44
+ * @Last Modified time: 2018-04-18 11:24:50
  */
 import * as pro from './action-type';
 import Immutable from 'immutable';
@@ -18,20 +18,21 @@ import Immutable from 'immutable';
      *   selectNum:0, 选择数量
      * }]
     **/  
-    dataList:[{
-         product_id:1, 
-         product_name:"PaiBot(2G/32G)", 
-         commission:200 , 
-         selectStatus:false, 
-         selectNum:0, 
-       },
-       {
-        product_id:2, 
-        product_name:"PaiBot(2G/64G)", 
-        commission:200 , 
-        selectStatus:false, 
-        selectNum:0, 
-      }
+    dataList:[
+      // {
+      //    product_id:1, 
+      //    product_name:"PaiBot(2G/32G)", 
+      //    commission:200 , 
+      //    selectStatus:false, 
+      //    selectNum:0, 
+      //  },
+      //  {
+      //   product_id:2, 
+      //   product_name:"PaiBot(2G/64G)", 
+      //   commission:200 , 
+      //   selectStatus:false, 
+      //   selectNum:0, 
+      // }
     ]
  }
 
@@ -41,6 +42,9 @@ import Immutable from 'immutable';
 
     switch(action.type){
        case pro.GETPRODUCTION:
+      //  console.log(state)
+      //  console.log(action)
+      //  console.log({...state,...action})
        return {...state,...action}
        case pro.TOGGLESELECT:
        //避免引用类型数据，使用immutable进行数据转换 

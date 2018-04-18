@@ -2,12 +2,40 @@
  * @Author: Tmac-1 
  * @Date: 2018-04-18 00:15:51 
  * @Last Modified by: Tmac-1
- * @Last Modified time: 2018-04-18 00:32:14
+ * @Last Modified time: 2018-04-18 14:29:57
  */
 
  import Server from './server';
 
  class API extends Server{
+
+  /**
+   *  用途：上传图片
+   *  @url http://cangdu.org:8001/v1/addimg/shop
+   *  返回status为1表示成功
+   *  @method post
+   *  @return {promise}
+   */
+  
+   async uploadImg(params={}){
+            try{
+                let result = await this.axios('post','http://cangdu.org:8001/v1/addimg/shop',params)
+                if(result && result.status === 1){
+                  return result;
+                }else{
+                    let err = {
+                        tip: '上传图片失败',
+                        response: result,
+                        data: params,
+                        url: 'http://cangdu.org:8001/v1/addimg/shop',
+                      }
+                    throw err  
+                }
+            }catch(err){
+                throw err
+            }
+   }
+
 
   /**
    *  用途：获取商品数据
@@ -36,8 +64,6 @@
           throw err
       }
    }
-
-
  }
 
  export default new API()
