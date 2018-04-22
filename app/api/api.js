@@ -2,7 +2,7 @@
  * @Author: Tmac-1 
  * @Date: 2018-04-18 00:15:51 
  * @Last Modified by: Tmac-1
- * @Last Modified time: 2018-04-18 14:29:57
+ * @Last Modified time: 2018-04-22 22:59:34
  */
 
  import Server from './server';
@@ -36,6 +36,34 @@
             }
    }
 
+   /**
+    *   用途：获取记录数据
+    *   @url  @url http://cangdu.org/shopro/data/record
+    *   返回http_code为200表示成功
+    *   @method get
+    *   @return {promise}
+   */
+
+   async getRecord( params ={}){
+       try {
+          let   result  = await this.axios('get', `/shopro/data/record/${params.type}`)
+          if( result && (result.data instanceof Object) && result.http_code === 200){
+              return result.data;
+          } else{
+            let err = {
+                tip: '获取记录数据失败',
+                response: result,
+                data: params,
+                url: 'http://cangdu.org/shopro/data/record',
+              }
+              throw err;
+          }
+         
+        }catch(err){
+           throw err
+       }
+   }
+
 
   /**
    *  用途：获取商品数据
@@ -63,6 +91,30 @@
       }catch(err){
           throw err
       }
+   }
+
+    /**
+     * 获取佣金
+     */
+ 
+   async getBalance(params = {} ){
+       try{
+           let result = await this.axios('get','/shopro/data/balance',params)
+           if(result && (result.data instanceof Object) && result.http_code === 200){
+               return result.data.data || {}
+           }else{
+                let err = {
+                    tip: '获取佣金数据失败',
+                    response: result,
+                    data: params,
+                    url: 'http://cangdu.org/shopro/data/balance',
+                }
+                throw err;
+           }
+      
+        }catch(err){
+          throw err
+       }
    }
  }
 

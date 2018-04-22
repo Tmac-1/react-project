@@ -2,7 +2,7 @@
  * @Author: Tmac-1 
  * @Date: 2018-04-14 23:41:49 
  * @Last Modified by: Tmac-1
- * @Last Modified time: 2018-04-18 11:24:50
+ * @Last Modified time: 2018-04-21 17:30:25
  */
 import * as pro from './action-type';
 import Immutable from 'immutable';
@@ -61,6 +61,16 @@ import Immutable from 'immutable';
        imuDataList = imuDataList.set(action.index,imuItem)
         // redux必须返回一个新的state
        return {...state,...{dataList:imuDataList.toJS()} };
+       case pro.CLEARSELECTED:
+       let selectList = state.dataList;
+        selectList.map( item =>{
+            item.selectStatus = false;
+            item.selectNum =0;
+            return item;
+        }
+       )
+       console.log(selectList)
+       return { ...state, ...{dataList:selectList}}
        default:
        return state;
     }

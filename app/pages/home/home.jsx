@@ -2,7 +2,7 @@
  * @Author: Tmac-1 
  * @Date: 2018-04-05 12:11:47 
  * @Last Modified by: Tmac-1
- * @Last Modified time: 2018-04-18 14:46:45
+ * @Last Modified time: 2018-04-23 01:33:39
  */
 
  import React from 'react';
@@ -10,11 +10,14 @@
  import {NavLink} from 'react-router-dom';
  import { connect } from 'react-redux';
  import { saveFormData , saveImg , clearData } from '../../store/home/action';
+ import { is , fromJS} from 'immutable';
+ import { clearSelected } from '../../store/production/action';
  import envconfig from '../../envconfig/envconfig';
  import API from '../../api/api';
  import PropTypes from 'prop-types';
  import TouchableOpacity from '../../components/TouchableOpacity/TouchableOpacity';
  import PublicAlert from '../../components/alert/alert';
+ import Toast from '../../components/toast/toast';
  import './home.less';
 
 
@@ -25,11 +28,14 @@
         saveFormData:PropTypes.func.isRequired,
         saveImg:PropTypes.func.isRequired,
         clearData:PropTypes.func.isRequired,
+        clearSelected:PropTypes.func.isRequired
    };
 
    state = {
        alertStatus:false, //弹窗状态
-       alertTip:''  //弹窗提示文字
+       alertTip:'',  //弹窗提示文字
+       toastStatus:false, // 提示层状态
+       toastTip:'' // 提示层文字
    }
 
     /** 
@@ -57,13 +63,21 @@
     */
     uploadImg =  async event =>{
           try{
+           this.setState({
+                  toastStatus:true,
+                  alertTip:"上传中..."
+              })
+              console.log(this.state.alertTip)
               let formdata = new FormData();
               formdata.append('file',event.target.files[0]);
-              console.log(formdata)
-              console.log(event.target.files[0])
               let result = await API.uploadImg({data:formdata});
               this.props.saveImg(envconfig.imgUrl + result.image_path);
-              
+     
+           this.setState({
+                    alertTip:'上传成功'
+                })
+             
+              console.log(this.state.alertTip)
           }catch(err){
               console.error(err)
           }
@@ -83,6 +97,7 @@
         }else{
             alertTip = '添加数据成功'
             this.props.clearData();
+            this.props.clearSelected();
         }
         
         this.setState({
@@ -109,6 +124,13 @@
             }
         })
 
+    }
+
+    // 更新选择商品的state
+    componentWillReceiveProps(nextProps){
+        if( !is( fromJS(this.props) , fromJS(nextProps) )){
+            this.initData(nextProps)
+        }
     }
 
     componentWillMount(){
@@ -165,6 +187,7 @@
 
                   <TouchableOpacity className='submit-btn' clickCallBack={this.submitForm} text='提交'/>
                   <PublicAlert closeAlert={this.closeAlert} alertTip={this.state.alertTip} alertStatus={this.state.alertStatus}/>
+                  <Toast toastStatus={this.state.toastStatus}  text={this.state.toastTip}/>
             </main>
         )
     }
@@ -181,6 +204,7 @@
      {
         saveFormData,
         saveImg,
-        clearData
+        clearData,
+        clearSelected
      }
  )(Home);

@@ -2,7 +2,7 @@
  * @Author: Tmac-1 
  * @Date: 2018-04-15 16:17:49 
  * @Last Modified by: Tmac-1
- * @Last Modified time: 2018-04-18 11:29:03
+ * @Last Modified time: 2018-04-21 17:19:58
  */
 
 import * as pro from './action-type';
@@ -46,5 +46,12 @@ export const togSelectPro = index =>{
     return {
         type:pro.TOGGLESELECT,
         index
+    }
+}
+
+// 清空选择
+export const clearSelected = () =>{
+    return {
+        type:pro.CLEARSELECTED
     }
 }
