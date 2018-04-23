@@ -6,6 +6,7 @@ import Record from '../pages/record/record';
 import Helpcenter from '../pages/helpcenter/helpcenter';
 import Production from '../pages/production/production';
 import Balance from '../pages/balance/balance';
+import Echart from '../pages/echart/echart';
 
 class RouterConfig extends React.Component{
     render(){
@@ -17,6 +18,7 @@ class RouterConfig extends React.Component{
                     <Route path='/helpcenter' component={Helpcenter}/>
                     <Route path='/production' component={Production}/>
                     <Route path='/balance' component={Balance}/>
+                    <Route path='/echart' component={Echart}/>
 
                     <Redirect to='/'/>
                 </Switch>

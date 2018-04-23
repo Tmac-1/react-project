@@ -2,7 +2,7 @@
  * @Author: Tmac-1 
  * @Date: 2018-04-05 12:05:06 
  * @Last Modified by: Tmac-1
- * @Last Modified time: 2018-04-16 10:58:16
+ * @Last Modified time: 2018-04-23 23:55:32
  */
 
  import React from 'react';
@@ -60,7 +60,7 @@
                        <NavLink to='/' exact className='nav-link icon-jia'>首页</NavLink>
                        <NavLink to='/balance' className='nav-link icon-jia'>提现</NavLink>
                        <NavLink to='/helpcenter' className='nav-link icon-jia'>帮助中心</NavLink>
-
+                       <NavLink to='/echart' className='nav-link icon-jia'>数据可视化</NavLink>
                                          </aside>    
                   }
               </ReactCSSTransitionGroup>

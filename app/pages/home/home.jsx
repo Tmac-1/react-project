@@ -65,7 +65,7 @@
           try{
            this.setState({
                   toastStatus:true,
-                  alertTip:"上传中..."
+                  toastTip:"上传中..."
               })
               console.log(this.state.alertTip)
               let formdata = new FormData();
@@ -74,8 +74,13 @@
               this.props.saveImg(envconfig.imgUrl + result.image_path);
      
            this.setState({
-                    alertTip:'上传成功'
+                 toastTip:'上传成功'
                 })
+          setInterval(()=>{
+              this.setState({
+                toastStatus:false,
+              })
+          },2000)      
              
               console.log(this.state.alertTip)
           }catch(err){
