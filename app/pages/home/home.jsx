@@ -84,6 +84,7 @@
           },2000)      
 
               console.log(this.state.toastTip)
+
           }catch(err){
               console.error(err)
           }

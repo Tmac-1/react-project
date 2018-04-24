@@ -17,7 +17,8 @@ const entryContent = (data) => {
         import '../app/utils/setRem';
         import '../app/style/base.css';
         ReactDOM.render([<Index key="Index"/>],document.getElementById('app'));`
-    )
+    )// 生成单入口页面后，要手动修改 import 的内容
+    
 };
 /*生成webpack entry 入口文件*/
 entry.map((data) => {

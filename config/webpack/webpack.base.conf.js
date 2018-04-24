@@ -5,6 +5,7 @@ const newEntry ={
 //    'shop':'./entryBuild/shop.js'
 };
 
+// 生成主入口文件
 for(let name in entry){
    newEntry[name] = entry[name][0]
 }
