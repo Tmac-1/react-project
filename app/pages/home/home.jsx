@@ -2,7 +2,7 @@
  * @Author: Tmac-1 
  * @Date: 2018-04-05 12:11:47 
  * @Last Modified by: Tmac-1
- * @Last Modified time: 2018-04-23 01:33:39
+ * @Last Modified time: 2018-04-23 10:54:45
  */
 
  import React from 'react';
@@ -63,21 +63,27 @@
     */
     uploadImg =  async event =>{
           try{
-           this.setState({
+         this.setState({
                   toastStatus:true,
-                  alertTip:"上传中..."
+                  toastTip:"上传中..."
               })
-              console.log(this.state.alertTip)
+              console.log(this.state.toastTip)
               let formdata = new FormData();
               formdata.append('file',event.target.files[0]);
-              let result = await API.uploadImg({data:formdata});
-              this.props.saveImg(envconfig.imgUrl + result.image_path);
+              let result = await API.uploadImg({data:formdata})
+             await this.props.saveImg(envconfig.imgUrl + result.image_path);
      
-           this.setState({
-                    alertTip:'上传成功'
+          this.setState({
+            toastTip:'上传成功'
                 })
-             
-              console.log(this.state.alertTip)
+            
+          setTimeout(()=>{
+              this.setState({
+                  toastStatus:false
+              })
+          },2000)      
+
+              console.log(this.state.toastTip)
           }catch(err){
               console.error(err)
           }

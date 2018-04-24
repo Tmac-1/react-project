@@ -2,7 +2,7 @@
  * @Author: Tmac-1 
  * @Date: 2018-04-05 12:05:06 
  * @Last Modified by: Tmac-1
- * @Last Modified time: 2018-04-16 10:58:16
+ * @Last Modified time: 2018-04-23 19:02:06
  */
 
  import React from 'react';
@@ -38,10 +38,10 @@
     render(){
         return(
             <header className='header-container'>
-                <span className='header-slide-icon iconfont icon-caidan' onClick={this.toggleNav}></span>
+                <span className='header-slide-icon iconfont icon-caidan2' onClick={this.toggleNav}></span>
                 <span className='header-title'>{this.props.title}</span>
                 {
-                    this.props.record&& <NavLink to='/record' exact className='header-link iconfont icon-5' />
+                    this.props.record&& <NavLink to='/record' exact className='header-link iconfont icon-jilu' />
                 }
                 {
                     this.props.confirm && <NavLink to='/' exact className='header-link header-link-confirm'>确定</NavLink>
@@ -57,9 +57,9 @@
                   {
                 this.state.navState &&   <aside key='nav-slide' className='nav-slide-list' onClick={this.toggleNav}>
                           
-                       <NavLink to='/' exact className='nav-link icon-jia'>首页</NavLink>
-                       <NavLink to='/balance' className='nav-link icon-jia'>提现</NavLink>
-                       <NavLink to='/helpcenter' className='nav-link icon-jia'>帮助中心</NavLink>
+                       <NavLink to='/' exact className='nav-link icon-you'>首页</NavLink>
+                       <NavLink to='/balance' className='nav-link icon-you'>提现</NavLink>
+                       <NavLink to='/helpcenter' className='nav-link icon-you'>帮助中心</NavLink>
 
                                          </aside>    
                   }

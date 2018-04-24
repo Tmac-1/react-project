@@ -2,7 +2,7 @@
  * @Author: Tmac-1 
  * @Date: 2018-04-14 23:37:14 
  * @Last Modified by: Tmac-1
- * @Last Modified time: 2018-04-22 01:29:35
+ * @Last Modified time: 2018-04-23 19:03:43
  */
 import React from 'react';
 import PublicHeader from '../../components/header/header';
@@ -62,7 +62,7 @@ class Production extends React.Component{
                                                 <span className='pro-name'>{item.product_name}</span>
                                         </div>
                                         <div className='pro-item-edit'>
-                                                    <span className={`icon-jian ${item.selectNum > 0 ? 'edit-active' :''}`} onClick={this.handeleEdit.bind(this,index,-1)}></span>  
+                                                    <span className={`icon-53 ${item.selectNum > 0 ? 'edit-active' :''}`} onClick={this.handeleEdit.bind(this,index,-1)}></span>  
                                                     <span className='pro-num'>{item.selectNum}</span>  
                                                     <span className='icon-jia' onClick={this.handeleEdit.bind(this,index,1)}></span>  
                                         </div>
